@@ -21,6 +21,31 @@
   --second-bg: #2d2d2d;
   --text-color: #ececec;
   --color-main: #00ff66;
+
+  --item1-transform: translate(-100%, -5%) scale(1.5);
+  --item1-filter: blur(30px);
+  --item1-zIndex: 11;
+  --item1-opacity: 0;
+
+  --item2-transform: translate(0, 0);
+  --item2-filter: blur(0);
+  --item2-zIndex: 10;
+  --item2-opacity: 1;
+
+  --item3-transform: translate(50%, 10%) scale(0.8);
+  --item3-filter: blur(10px);
+  --item3-zIndex: 9;
+  --item3-opacity: 1;
+
+  --item4-transform: translate(90%, 20%) scale(0.5);
+  --item4-filter: blur(30px);
+  --item4-zIndex: 8;
+  --item4-opacity: 1;
+
+  --item5-transform: translate(120%, 30%) scale(0.3);
+  --item5-filter: blur(40px);
+  --item5-zIndex: 7;
+  --item5-opacity: 0;
 }
 /* root main end */
 
@@ -46,7 +71,7 @@ html::-webkit-scrollbar-thumb {
 /* set all body end */
 
 /* setup header start */
-header {
+.header {
   position: fixed;
   top: 0;
   left: 0;
@@ -64,8 +89,8 @@ header {
   font-size: 3rem;
   color: var(--color-main);
   font-weight: 800;
+  cursor: pointer;
   transition: 0.3s ease;
-  border-bottom: 2px solid transparent;
 }
 .logo:hover {
   transform: scale(1.1);
@@ -85,15 +110,16 @@ header {
   color: var(--color-main);
   border: 3px solid var(--color-main);
 }
-#main-menu {
+#menu-icon {
   font-size: 3.6rem;
   color: var(--color-main);
   display: none;
+  cursor: pointer;
 }
 
 /* setup responsive header start */
 @media (max-width: 995px) {
-  #main-menu {
+  #menu-icon {
     display: block;
   }
   .navbar {
@@ -109,7 +135,7 @@ header {
     border-top: 0.1rem solid rgba(0, 0, 0, 0.4);
     display: none;
   }
-  .navbar .active {
+  .navbar.active {
     display: block;
   }
   .navbar a {
@@ -121,7 +147,6 @@ header {
   .navbar a.active {
     padding: 1rem;
     border-radius: 0.5rem;
-    border-bottom: 0.5rem solid var(--color-main);
   }
 }
 /* setup responsive header end */
@@ -546,6 +571,7 @@ span {
     height: 100%;
   }
 }
+/* setup responsive start */
 
 @media screen and (max-width: 775px) {
   .container-timeline {
@@ -585,4 +611,142 @@ span {
     left: 15px;
   }
 }
+/* setup responsive timeline end */
 /* setup section timeline end */
+
+/* section movie start */
+.movie {
+  background-color: var(--second-bg);
+}
+.carousel {
+  margin-top: -50px;
+  height: 800px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.carousel .list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1140px;
+  max-width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 80%;
+}
+.carousel .list .item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  font-size: 15px;
+}
+.carousel .list .item img {
+  width: 45%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-right: -80px;
+  border-radius: 20px;
+  transform: translateY(-50%);
+}
+.carousel .list .item .detail {
+  opacity: 0;
+  pointer-events: none;
+}
+.carousel .list .item .intro {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 360px;
+  opacity: 0;
+  pointer-events: none;
+}
+.carousel .list .item:nth-child(2) .intro {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.5s;
+}
+.carousel .list .item:nth-child(n + 6) {
+  opacity: 0;
+  pointer-events: none;
+}
+.carousel .list .item:nth-child(2) {
+  transform: var(--item2-transform);
+  filter: var(--item2-filter);
+  z-index: var(--item2-zIndex);
+  opacity: var(--item2-opacity);
+}
+.carousel .list .item:nth-child(1) {
+  transform: var(--item1-transform);
+  filter: var(--item1-filter);
+  z-index: var(--item1-zIndex);
+  opacity: var(--item1-opacity);
+  pointer-events: none;
+}
+.carousel .list .item:nth-child(3) {
+  transform: var(--item3-transform);
+  filter: var(--item3-filter);
+  z-index: var(--item3-zIndex);
+  opacity: var(--item3-opacity);
+}
+.carousel .list .item:nth-child(4) {
+  transform: var(--item4-transform);
+  filter: var(--item4-filter);
+  z-index: var(--item4-zIndex);
+  opacity: var(--item4-opacity);
+}
+.carousel .list .item:nth-child(5) {
+  transform: var(--item5-transform);
+  filter: var(--item5-filter);
+  z-index: var(--item5-zIndex);
+  opacity: var(--item5-opacity);
+  pointer-events: none;
+}
+.arrows {
+  position: absolute;
+  bottom: 10px;
+  width: 1140px;
+  max-width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.arrows #next,
+.arrows #prev {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-family: monospace;
+  font-size: large;
+  font-weight: bold;
+  color: var(--color-main);
+  border: 1px solid var(--color-main);
+  background-color: var(--second-bg);
+}
+.arrows #goback {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  border: none;
+  border-bottom: 1px solid var(--color-main);
+  letter-spacing: 3px;
+  background-color: transparent;
+  opacity: 0;
+  pointer-events: none;
+}
+.carousel .list .item .intro .title {
+  font-size: 1.2em;
+}
+.carousel .list .item .intro .topic {
+  font-size: 2.5em;
+  font-weight: 500;
+}
+.carousel .list .item .intro .decs {
+  font-size: 0.7em;
+}
+
+/* section movie end */
